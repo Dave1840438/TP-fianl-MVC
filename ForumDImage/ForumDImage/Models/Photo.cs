@@ -10,15 +10,16 @@ namespace ForumDImage.Models
     [Table("Photos")]
     public class Photo
     {
-        public virtual Utilisateur Auteur;
+        public int Id { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
 
         [Required]
-        public byte[] Image;
+        public byte[] Image { get; set; }
 
         [Required]
-        public DateTime Date;
+        public DateTime Date { get; set; }
 
         [Required, StringLength(300)]
-        public string Commentaire;
+        public string Commentaire { get; set; }
     }
 }

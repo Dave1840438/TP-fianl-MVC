@@ -12,16 +12,16 @@ namespace ForumDImage.Models
     {
         public int Id { get; set; }
 
-        [Required, Display(Name="Nom d'utilisateur: "), StringLength(20)]
+        [Required(ErrorMessage = "Ne peut pas être vide"), Display(Name = "Nom d'utilisateur: "), StringLength(20)]
         public string NomUtilisateur { get; set; }
 
-        [Required, Display(Name="Mot de passe :"), StringLength(20)]
+        [Required(ErrorMessage = "Ne peut pas être vide"), Display(Name = "Mot de passe :"), StringLength(20)]
         public string MotDePasse { get; set; }
 
-        [Required, Display(Name="Nom complet :"), StringLength(50)]
+        [Required(ErrorMessage="Ne peut pas être vide"), Display(Name="Nom complet :"), StringLength(50)]
         public string NomComplet { get; set; }
 
-        [Required, Display(Name="Email :"), StringLength(100)]
+        [Required(ErrorMessage="Le email est syntaxiquement incorrect"), Display(Name="Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
         public string Email { get; set; }
     }
 }

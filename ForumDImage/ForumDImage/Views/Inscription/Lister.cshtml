@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+    @model List<ForumDImage.Models.Utilisateur>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lister</title>
+</head>
+<body>
+    <div> 
+        <table>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.NomComplet</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+    @model ForumDImage.Models.Utilisateur
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        Hello
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <legend>Ajouter un usager</legend>
+
+                <div>
+                    @Html.LabelFor(model => model.NomUtilisateur)
+                    @Html.TextBoxFor(model => model.NomUtilisateur)
+                    @Html.ValidationMessageFor(model => model.NomUtilisateur)
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.NomComplet)
+                    @Html.TextBoxFor(model => model.NomComplet)
+                    @Html.ValidationMessageFor(model => model.NomComplet)
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.MotDePasse)
+                    @Html.TextBoxFor(model => model.MotDePasse)
+                    @Html.ValidationMessageFor(model => model.MotDePasse)
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <br />
+                <input type="submit" value="Inscription" />
+            </fieldset>
+        }
+    </div>
+</body>
+</html>
