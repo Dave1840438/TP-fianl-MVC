@@ -18,10 +18,10 @@ namespace ForumDImage.Models
         [Required(ErrorMessage = "Ne peut pas être vide"), Display(Name = "Mot de passe :"), StringLength(20)]
         public string MotDePasse { get; set; }
 
-        [Required(ErrorMessage="Ne peut pas être vide"), Display(Name="Nom complet :"), StringLength(50)]
+        [Display(Name="Nom complet :"), StringLength(50)]
         public string NomComplet { get; set; }
 
-        [Required(ErrorMessage="Le email est syntaxiquement incorrect"), Display(Name="Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
+        [Display(Name="Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
         public string Email { get; set; }
     }
 }

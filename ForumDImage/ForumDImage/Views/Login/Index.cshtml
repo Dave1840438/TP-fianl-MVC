@@ -17,7 +17,7 @@
         @using (Html.BeginForm())
         {
             <fieldset>
-                <legend>Ajouter un usager</legend>
+                <legend>Se connecter</legend>
 
                 <div>
                     @Html.LabelFor(model => model.NomUtilisateur)
@@ -25,25 +25,13 @@
                 </div>
 
                 <div>
-                    @Html.LabelFor(model => model.NomComplet)
-                    @Html.TextBoxFor(model => model.NomComplet)
-                </div>
-
-                <div>
                     @Html.LabelFor(model => model.MotDePasse)
                     @Html.TextBoxFor(model => model.MotDePasse)
                 </div>
-
-                <div>
-                    @Html.LabelFor(model => model.Email)
-                    @Html.TextBoxFor(model => model.Email)
-                </div>
+                @Html.ActionLink("Inscription", "~/Inscription/Index");
                 <br />
-                <input type="submit" value="Inscription" />
+                <input type="submit" value="Connection" />
             </fieldset>
-            
-            
-            
         }
     </div>
 </body>
