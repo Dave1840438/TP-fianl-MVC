@@ -19,7 +19,7 @@ namespace ForumDImage.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [Required, StringLength(300)]
+        [StringLength(300)]
         public string Commentaire { get; set; }
     }
 }

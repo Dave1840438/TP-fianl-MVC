@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MainPage</title>
+</head>
+<body>
+    <h1>That main page</h1>
+
+    @foreach (ForumDImage.Models.Photo photo in ViewBag.Photos)
+    {
+        var base64 = Convert.ToBase64String(photo.Image);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        
+        <img src="@imgSrc" />
+        <label>Auteur: @(photo.Utilisateur.NomComplet == null ? photo.Utilisateur.NomUtilisateur : photo.Utilisateur.NomComplet)</label>
+        <label>Date de publication: @photo.Date</label>
+        <label>Commentaire: @photo.Commentaire</label>
+    }
+</body>
+</html>

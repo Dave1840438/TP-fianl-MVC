@@ -20,6 +20,7 @@ namespace ForumDImage.Controllers
         [HttpPost]
         public ActionResult Index(Utilisateur user)
         {
+            
             if (ModelState.IsValid)
             {
                 Dal dataBase = new Dal();

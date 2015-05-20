@@ -22,7 +22,7 @@
                 <div>
                     @Html.LabelFor(model => model.NomUtilisateur)
                     @Html.TextBoxFor(model => model.NomUtilisateur)
-                    @Html.ValidationMessageFor(model => model.NomUtilisateur)
+                    @Html.ValidationMessageFor(model => model.NomUtilisateur)*
                 </div>
 
                 <div>
@@ -33,7 +33,7 @@
 
                 <div>
                     @Html.LabelFor(model => model.MotDePasse)
-                    @Html.TextBoxFor(model => model.MotDePasse)
+                    @Html.TextBoxFor(model => model.MotDePasse)*
                     @Html.ValidationMessageFor(model => model.MotDePasse)
                 </div>
 
@@ -42,6 +42,7 @@
                     @Html.TextBoxFor(model => model.Email)
                     @Html.ValidationMessageFor(model => model.Email)
                 </div>
+                *Obligatoire
                 <br />
                 <input type="submit" value="Inscription" />
             </fieldset>

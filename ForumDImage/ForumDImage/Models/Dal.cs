@@ -17,12 +17,29 @@ namespace ForumDImage.Models
 
         public void AjouterUtilisateur(string nomUtilisateur, string motDePasse, string nomComplet, string email)
         {
-            bdd.Utilisateurs.Add(new Utilisateur { NomUtilisateur = nomUtilisateur, MotDePasse = motDePasse, NomComplet = nomComplet, Email = email });            bdd.SaveChanges();
+            bdd.Utilisateurs.Add(new Utilisateur { NomUtilisateur = nomUtilisateur, MotDePasse = motDePasse, NomComplet = nomComplet, Email = email });
+            bdd.SaveChanges();
+        }
+
+        public void AjouterPhoto(Utilisateur user, byte[] image, String commentaire)
+        {
+            bdd.Photos.Add(new Photo { Utilisateur = user, Image = image, Commentaire = commentaire, Date = DateTime.Now });
+            bdd.SaveChanges();
         }
 
         public List<Utilisateur> ListerUtilisateur()
         {
             return bdd.Utilisateurs.ToList();
+        }
+
+        public Utilisateur recupererUtilisateur(String id)
+        {
+            return bdd.Utilisateurs.FirstOrDefault(u => u.Id.ToString() == id);
+        }
+
+        public List<Photo> ListerPhotos()
+        {
+            return bdd.Photos.ToList();
         }
 
         public Utilisateur Authentifier(string username, string password)

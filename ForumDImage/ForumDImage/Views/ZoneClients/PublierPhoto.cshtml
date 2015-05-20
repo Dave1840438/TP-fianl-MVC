@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+    @model ForumDImage.Models.Photo
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PublierPhoto</title>
+</head>
+<body>
+    <div> 
+       @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       { 
+            <fieldset>
+                <legend>Ajouter un usager</legend>
+
+                <div>
+                    @Html.LabelFor(model => model.Image)
+                    <input type="file" accept=".jpg,.png" name="Image" />
+                    @Html.ValidationMessageFor(model => model.Image)
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Commentaire)
+                    @Html.TextBoxFor(model => model.Commentaire)
+                    @Html.ValidationMessageFor(model => model.Commentaire)
+                </div>
+                <br />
+                <input type="submit" value="Inscription" />
+            </fieldset>
+        }
+    </div>
+</body>
+</html>
