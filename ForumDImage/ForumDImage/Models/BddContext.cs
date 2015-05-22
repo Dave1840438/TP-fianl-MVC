@@ -10,5 +10,7 @@ namespace ForumDImage.Models
     {
         public DbSet<Utilisateur> Utilisateurs { get; set; }
         public DbSet<Photo> Photos { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
     }
 }

@@ -35,12 +35,22 @@ namespace ForumDImage.Controllers
                 if (utilisateur != null)
                 {
                     FormsAuthentication.SetAuthCookie(utilisateur.Id.ToString(), false);
-                    return Redirect("~/Inscription/ErreurInscription");
+                    return RedirectToAction("Index", "ZoneClients");
                 }
                 ModelState.AddModelError("Utilisateur.NomUtilisateur", "Nom d'utilisateur ou mot de passe incorrect");
             }
           
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+            
+            base.Dispose(disposing);
         }
 
 	}

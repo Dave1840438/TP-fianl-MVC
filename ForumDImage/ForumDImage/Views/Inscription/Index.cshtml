@@ -16,13 +16,14 @@
         Hello
         @using (Html.BeginForm())
         {
+            Html.ValidationSummary(false);
             <fieldset>
                 <legend>Ajouter un usager</legend>
 
                 <div>
                     @Html.LabelFor(model => model.NomUtilisateur)
-                    @Html.TextBoxFor(model => model.NomUtilisateur)
-                    @Html.ValidationMessageFor(model => model.NomUtilisateur)*
+                    @Html.TextBoxFor(model => model.NomUtilisateur)*
+                    @Html.ValidationMessageFor(model => model.NomUtilisateur)
                 </div>
 
                 <div>

@@ -20,7 +20,7 @@
 
                 <div>
                     @Html.LabelFor(model => model.Image)
-                    <input type="file" accept=".jpg,.png" name="Image" />
+                    <input type="file" accept=".jpg,.png,.gif" name="Image" />
                     @Html.ValidationMessageFor(model => model.Image)
                 </div>
 
@@ -34,5 +34,6 @@
             </fieldset>
         }
     </div>
+    @ViewBag.Message
 </body>
 </html>

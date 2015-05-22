@@ -9,6 +9,13 @@ namespace ForumDImage.Controllers
 {
     public class InscriptionController : Controller
     {
+
+        Dal dal;
+        public InscriptionController()
+        {
+            dal = new Dal();
+        }
+
         //
         // GET: /Inscription/
         [HttpGet]
@@ -23,8 +30,7 @@ namespace ForumDImage.Controllers
             
             if (ModelState.IsValid)
             {
-                Dal dataBase = new Dal();
-                dataBase.AjouterUtilisateur(user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
+                dal.AjouterUtilisateur(user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
 
                 return View("Success");
             }
@@ -37,6 +43,16 @@ namespace ForumDImage.Controllers
             Dal dataBase = new Dal();
 
             return View(dataBase.ListerUtilisateur());
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
 	}
 }

@@ -47,6 +47,24 @@ namespace ForumDImage.Models
             return bdd.Utilisateurs.FirstOrDefault(u => u.NomUtilisateur == username && u.MotDePasse == password);
         }
 
+        public bool UtilisateurADejaVote(string photoId, string userID)
+        {
+            return bdd.Votes.FirstOrDefault(v => v.Photo.Id.ToString() == photoId && v.Utilisateur.Id.ToString() == userID) != null;
+        }
+
+        public int getNbVotes(string photoId)
+        {
+            return bdd.Votes.Where(v => v.Photo.Id.ToString() == photoId).ToList().Count;
+        }
+
+        public void ajouterUnVote(string userID, string photoID)
+        {
+            Photo photo = bdd.Photos.FirstOrDefault(p => p.Id.ToString() == photoID);
+            Utilisateur user = bdd.Utilisateurs.FirstOrDefault(u => u.Id.ToString() == userID);
+            bdd.Votes.Add(new Vote() { Photo = photo, Utilisateur = user });
+            bdd.SaveChanges();
+        }
+
         public void Dispose()
         {
             
