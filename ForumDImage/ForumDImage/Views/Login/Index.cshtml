@@ -28,10 +28,11 @@
                     @Html.LabelFor(model => model.MotDePasse)
                     @Html.TextBoxFor(model => model.MotDePasse)
                 </div>
-                @Html.ActionLink("Inscription", "Index", "Inscription");
+                @Html.ActionLink("Inscription", "Index", "Inscription")
                 <br />
                 <input type="submit" value="Connection" />
             </fieldset>
+            <label style="color:red">@ViewBag.Message</label>
         }
     </div>
 </body>

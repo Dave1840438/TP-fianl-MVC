@@ -1,7 +1,7 @@
 ﻿
 @{
     Layout = null;
-    @model ForumDImage.Models.Utilisateur
+    @model ForumDImage.ViewModels.UserValidationModel
 }
 
 <!DOCTYPE html>
@@ -39,9 +39,21 @@
                 </div>
 
                 <div>
+                    @Html.LabelFor(model => model.ConfirmMotDePasse)
+                    @Html.TextBoxFor(model => model.ConfirmMotDePasse)*
+                    @Html.ValidationMessageFor(model => model.ConfirmMotDePasse)
+                </div>
+
+                <div>
                     @Html.LabelFor(model => model.Email)
                     @Html.TextBoxFor(model => model.Email)
                     @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.ConfirmEmail)
+                    @Html.TextBoxFor(model => model.ConfirmEmail)
+                    @Html.ValidationMessageFor(model => model.ConfirmEmail)
                 </div>
                 *Obligatoire
                 <br />

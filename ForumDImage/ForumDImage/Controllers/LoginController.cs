@@ -23,6 +23,7 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.Message = "";
             return View();
         }
 
@@ -37,9 +38,9 @@ namespace ForumDImage.Controllers
                     FormsAuthentication.SetAuthCookie(utilisateur.Id.ToString(), false);
                     return RedirectToAction("Index", "ZoneClients");
                 }
-                ModelState.AddModelError("Utilisateur.NomUtilisateur", "Nom d'utilisateur ou mot de passe incorrect");
             }
-          
+
+            ViewBag.Message = "Nom d'usager ou mot de passe incorrect";
             return View();
         }
 

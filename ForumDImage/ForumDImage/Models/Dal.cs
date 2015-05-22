@@ -21,6 +21,20 @@ namespace ForumDImage.Models
             bdd.SaveChanges();
         }
 
+        public void ModifierUtilisateur(string id, string nomUtilisateur, string motDePasse, string nomComplet, string email)
+        {
+            Utilisateur user = bdd.Utilisateurs.SingleOrDefault(u => u.Id.ToString() == id);
+
+            if (user != null)
+            {
+                user.NomUtilisateur = nomUtilisateur;
+                user.MotDePasse = motDePasse;
+                user.NomComplet = nomComplet;
+                user.Email = email;
+                bdd.SaveChanges();
+            }
+        }
+
         public void AjouterPhoto(Utilisateur user, byte[] image, String commentaire)
         {
             bdd.Photos.Add(new Photo { Utilisateur = user, Image = image, Commentaire = commentaire, Date = DateTime.Now });
@@ -62,6 +76,13 @@ namespace ForumDImage.Models
             Photo photo = bdd.Photos.FirstOrDefault(p => p.Id.ToString() == photoID);
             Utilisateur user = bdd.Utilisateurs.FirstOrDefault(u => u.Id.ToString() == userID);
             bdd.Votes.Add(new Vote() { Photo = photo, Utilisateur = user });
+            bdd.SaveChanges();
+        }
+
+        public void SupprimerUnePhoto(string photoId)
+        {
+            bdd.Votes.RemoveRange(bdd.Votes.Where(v => v.Photo.Id.ToString() == photoId));
+            bdd.Photos.RemoveRange(bdd.Photos.Where(p => p.Id.ToString() == photoId));
             bdd.SaveChanges();
         }
 

@@ -21,9 +21,27 @@ namespace ForumDImage.Controllers
         //
         // GET: /ZoneClients/
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int? _page)
         {
-            ViewBag.Photos = dal.ListerPhotos();
+            const int NB_PHOTOS_PAR_PAGE = 1;
+            int page = _page != null && (int)_page > 0  ? (int)_page : 1;
+
+            List<Photo> listeDesPhotos = dal.ListerPhotos();
+
+            page--;
+
+            if (page * NB_PHOTOS_PAR_PAGE > listeDesPhotos.Count)
+                page = (int)Math.Ceiling((double)listeDesPhotos.Count / (double)NB_PHOTOS_PAR_PAGE) - 1;
+
+            int nbPhotosRestantes = listeDesPhotos.Count - (page * NB_PHOTOS_PAR_PAGE);
+
+            if (nbPhotosRestantes > NB_PHOTOS_PAR_PAGE)
+                nbPhotosRestantes = NB_PHOTOS_PAR_PAGE;
+
+            ViewBag.Photos = listeDesPhotos.GetRange(page * NB_PHOTOS_PAR_PAGE, nbPhotosRestantes);
+            ViewBag.page = page + 1;
+            ViewBag.HasNext = listeDesPhotos.Count > (page + 1) * NB_PHOTOS_PAR_PAGE;
+            ViewBag.HasPrevious = page != 0;
             return View();
         }
 
@@ -76,6 +94,33 @@ namespace ForumDImage.Controllers
             return PartialView("getNbVotes");
         }
 
+        [HttpPost]
+        public ActionResult SupprimerPhoto(String photoId)
+        {
+            dal.SupprimerUnePhoto(photoId);
+            ViewBag.Photos = dal.ListerPhotos();
+            return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult ModifierUtilisateur()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ModifierUtilisateur(ViewModels.UserValidationModel user)
+        {
+
+            if (ModelState.IsValid)
+            {
+                dal.ModifierUtilisateur(user.Id.ToString(), user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
+                return View("Success");
+            }
+            else
+                return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -85,6 +130,8 @@ namespace ForumDImage.Controllers
 
             base.Dispose(disposing);
         }
+
+
 
     }
 }

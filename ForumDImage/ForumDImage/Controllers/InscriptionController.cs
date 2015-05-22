@@ -25,7 +25,7 @@ namespace ForumDImage.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Utilisateur user)
+        public ActionResult Index(ViewModels.UserValidationModel user)
         {
             
             if (ModelState.IsValid)
