@@ -40,8 +40,8 @@ namespace ForumDImage.Controllers
 
             ViewBag.Photos = listeDesPhotos.GetRange(page * NB_PHOTOS_PAR_PAGE, nbPhotosRestantes);
             ViewBag.page = page + 1;
-            ViewBag.HasNext = listeDesPhotos.Count > (page + 1) * NB_PHOTOS_PAR_PAGE;
-            ViewBag.HasPrevious = page != 0;
+            ViewBag.HasNextPage = listeDesPhotos.Count > (page + 1) * NB_PHOTOS_PAR_PAGE;
+            ViewBag.HasPreviousPage = page != 0;
             return View();
         }
 

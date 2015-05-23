@@ -65,7 +65,7 @@
             using (Html.BeginForm("Index", "ZoneClients", FormMethod.Post))
             {
                 @Html.Hidden("photoID", photo.Id);
-        <input type="submit" value="J'aime" />
+                <input type="submit" value="J'aime" />
             }
 
         }
@@ -77,12 +77,12 @@
     }
 
     @{ 
-        if (ViewBag.HasPrevious)
+        if (ViewBag.HasPreviousPage)
         {
             @Html.ActionLink("Page précédente", "Index", new { _page = ViewBag.page - 1 });
         }
             <br />
-        if (ViewBag.HasNext)
+        if (ViewBag.HasNextPage)
         {
             @Html.ActionLink("Page suivante", "Index", new { _page = ViewBag.page + 1 });
         }

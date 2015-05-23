@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
     @model ForumDImage.Models.Photo
 }
@@ -10,17 +9,35 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>PublierPhoto</title>
+    <script type="text/javascript">
+        function ChargerPreview() {
+            var imageTarget = document.getElementById("preview");
+            var input = document.getElementById("fichier");
+            if (imageTarget != null) {
+                var fReader = new FileReader();
+                fReader.readAsDataURL(input.files[0]);
+                fReader.onloadend = function (event) {
+                    imageTarget.src = event.target.result;
+                }
+            }
+         }
+    </script>
 </head>
 <body>
-    <div> 
-       @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
-       { 
+    <div>
+        <label>Preview</label>
+        <br />
+        <img id="preview" src="nimportequoi" />
+        <br />
+
+        @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
             <fieldset>
                 <legend>Ajouter un usager</legend>
 
                 <div>
                     @Html.LabelFor(model => model.Image)
-                    <input type="file" accept=".jpg,.png,.gif" name="Image" />
+                    <input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" />
                     @Html.ValidationMessageFor(model => model.Image)
                 </div>
 
