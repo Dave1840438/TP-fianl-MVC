@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
     @model ForumDImage.ViewModels.UserValidationModel
 }
@@ -10,57 +9,68 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="MasterCSS.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div> 
-        Hello
+    <div class="HeaderDiv">
+        <img src="Le-Yung-LeL.png" alt="Le Yung Lel Logo" class="MainLogo" /></a>
+        <br>
+        <br>
+        <table class="MainTable">
+            <tr>
+                <td>@Html.ActionLink("Index", "Index", "ZoneClients")</td>
+                <td>@Html.ActionLink("Publier une Photo", "PublierPhoto", "ZoneClients")</td>
+                <td>@Html.ActionLink("Modifier le Compte", "ModifierUtilisateur", "ZoneClients")</td>
+                <td>@Html.ActionLink("Login", "Index", "Login")</td>
+                <td>@Html.ActionLink("Inscription", "Index", "Inscription")</td>
+            </tr>
+        </table>
+        <hr>
+    </div>
+    <div class="MainDiv">
         @using (Html.BeginForm())
         {
-            Html.ValidationSummary(false);
-            <fieldset>
-                <legend>Ajouter un usager</legend>
-
-                <div>
-                    @Html.LabelFor(model => model.NomUtilisateur)
-                    @Html.TextBoxFor(model => model.NomUtilisateur)*
-                    @Html.ValidationMessageFor(model => model.NomUtilisateur)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.NomComplet)
-                    @Html.TextBoxFor(model => model.NomComplet)
-                    @Html.ValidationMessageFor(model => model.NomComplet)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.MotDePasse)
-                    @Html.TextBoxFor(model => model.MotDePasse)*
-                    @Html.ValidationMessageFor(model => model.MotDePasse)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.ConfirmMotDePasse)
-                    @Html.TextBoxFor(model => model.ConfirmMotDePasse)*
-                    @Html.ValidationMessageFor(model => model.ConfirmMotDePasse)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.Email)
-                    @Html.TextBoxFor(model => model.Email)
-                    @Html.ValidationMessageFor(model => model.Email)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.ConfirmEmail)
-                    @Html.TextBoxFor(model => model.ConfirmEmail)
-                    @Html.ValidationMessageFor(model => model.ConfirmEmail)
-                </div>
-                *Obligatoire
-                <br />
-                <input type="submit" value="Inscription" />
-                <br />
-                @ViewBag.Message
-            </fieldset>
+        Html.ValidationSummary(false);
+        <fieldset>
+            <legend>Ajouter un Usager</legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(model => model.NomUtilisateur)</td>
+                    <td>@Html.TextBoxFor(model => model.NomUtilisateur)*</td>
+                    <td>@Html.ValidationMessageFor(model => model.NomUtilisateur)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.NomComplet)</td>
+                    <td>@Html.TextBoxFor(model => model.NomComplet)</td>
+                    <td>@Html.ValidationMessageFor(model => model.NomComplet)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.MotDePasse)</td>
+                    <td>@Html.TextBoxFor(model => model.MotDePasse)*</td>
+                    <td>@Html.ValidationMessageFor(model => model.MotDePasse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.ConfirmMotDePasse)</td>
+                    <td>@Html.TextBoxFor(model => model.ConfirmMotDePasse)*</td>
+                    <td>@Html.ValidationMessageFor(model => model.ConfirmMotDePasse)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email)</td>
+                    <td>@Html.TextBoxFor(model => model.Email)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.ConfirmEmail)</td>
+                    <td>@Html.TextBoxFor(model => model.ConfirmEmail)</td>
+                    <td>@Html.ValidationMessageFor(model => model.ConfirmEmail)</td>
+                </tr>
+            </table>
+            *Obligatoire
+            <br />
+            <input type="submit" value="Inscription" />
+            <br />
+            @ViewBag.Message
+        </fieldset>
         }
     </div>
 </body>

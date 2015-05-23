@@ -10,9 +10,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Lister</title>
+    <link href="MasterCSS.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div> 
+    <div class="HeaderDiv">
+        <img src="Le-Yung-LeL.png" alt="Le Yung Lel Logo" class="MainLogo" /></a>
+        <br>
+        <br>
+        <table class="MainTable">
+            <tr>
+                <td>@Html.ActionLink("Index", "Index", "ZoneClients")</td>
+                <td>@Html.ActionLink("Publier une Photo", "PublierPhoto", "ZoneClients")</td>
+                <td>@Html.ActionLink("Modifier le Compte", "ModifierUtilisateur", "ZoneClients")</td>
+                <td>@Html.ActionLink("Login", "Index", "Login")</td>
+                <td>@Html.ActionLink("Inscription", "Index", "Inscription")</td>
+            </tr>
+        </table>
+        <hr>
+    </div>
+    <div class="MainDiv"> 
         <table>
             @foreach (var user in Model)
             {

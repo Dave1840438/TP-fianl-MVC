@@ -9,6 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>PublierPhoto</title>
+    <link href="../MasterCSS.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function ChargerPreview() {
             var imageTarget = document.getElementById("preview");
@@ -20,11 +21,26 @@
                     imageTarget.src = event.target.result;
                 }
             }
-         }
+        }
     </script>
 </head>
 <body>
-    <div>
+    <div class="HeaderDiv">
+        <img src="../Le-Yung-LeL.png" alt="Le Yung Lel Logo" class="MainLogo" /></a>
+        <br>
+        <br>
+        <table class="MainTable">
+            <tr>
+                <td>@Html.ActionLink("Index", "Index", "ZoneClients")</td>
+                <td>@Html.ActionLink("Publier une Photo", "PublierPhoto", "ZoneClients")</td>
+                <td>@Html.ActionLink("Modifier le Compte", "ModifierUtilisateur", "ZoneClients")</td>
+                <td>@Html.ActionLink("Login", "Index", "Login")</td>
+                <td>@Html.ActionLink("Inscription", "Index", "Inscription")</td>
+            </tr>
+        </table>
+        <hr>
+    </div>
+    <div class="MainDiv">
         <label>Preview</label>
         <br />
         <img id="preview" src="nimportequoi" />
@@ -32,23 +48,24 @@
 
         @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <fieldset>
-                <legend>Ajouter un usager</legend>
-
-                <div>
-                    @Html.LabelFor(model => model.Image)
-                    <input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" />
-                    @Html.ValidationMessageFor(model => model.Image)
-                </div>
-
-                <div>
-                    @Html.LabelFor(model => model.Commentaire)
-                    @Html.TextBoxFor(model => model.Commentaire)
-                    @Html.ValidationMessageFor(model => model.Commentaire)
-                </div>
-                <br />
-                <input type="submit" value="Inscription" />
-            </fieldset>
+        <fieldset>
+            <legend>Publier une Image</legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Image)</td>
+                    <td><input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" /></td>
+                    <td>@Html.ValidationMessageFor(model => model.Image)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Commentaire)</td>
+                    <td>@Html.TextBoxFor(model => model.Commentaire)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Commentaire)</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Publier" /></td>
+                </tr>
+            </table>
+        </fieldset>
         }
     </div>
     @ViewBag.Message
