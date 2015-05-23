@@ -21,7 +21,7 @@ namespace ForumDImage.Models
         [Display(Name="Nom complet :"), StringLength(50)]
         public string NomComplet { get; set; }
 
-        [Display(Name="Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
+        [Display(Name="Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage="L'email est syntaxiquement incorrect")]
         public string Email { get; set; }
     }
 }

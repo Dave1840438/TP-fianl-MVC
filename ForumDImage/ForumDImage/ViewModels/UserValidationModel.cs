@@ -23,10 +23,10 @@ namespace ForumDImage.ViewModels
         [Display(Name = "Nom complet :"), StringLength(50)]
         public string NomComplet { get; set; }
 
-        [Display(Name = "Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
+        [Display(Name = "Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage="L'email est syntaxiquement incorrect")]
         public string Email { get; set; }
 
-        [Display(Name = "Confirmation du Email :"), StringLength(100), RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"), Compare("Email", ErrorMessage="Les emails ne correspondent pas!")]
+        [Display(Name = "Confirmation du Email :"), StringLength(100), Compare("Email", ErrorMessage="Les emails ne correspondent pas!")]
         public string ConfirmEmail { get; set; }
     }
 

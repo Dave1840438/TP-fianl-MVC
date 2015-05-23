@@ -21,6 +21,11 @@ namespace ForumDImage.Models
             bdd.SaveChanges();
         }
 
+        public bool usagerExiste(string username)
+        {
+            return bdd.Utilisateurs.SingleOrDefault(u => u.NomUtilisateur == username) != null;
+        }
+
         public void ModifierUtilisateur(string id, string nomUtilisateur, string motDePasse, string nomComplet, string email)
         {
             Utilisateur user = bdd.Utilisateurs.SingleOrDefault(u => u.Id.ToString() == id);

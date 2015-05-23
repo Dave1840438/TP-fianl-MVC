@@ -27,15 +27,19 @@ namespace ForumDImage.Controllers
         [HttpPost]
         public ActionResult Index(ViewModels.UserValidationModel user)
         {
-            
+            ViewBag.Message = "";
             if (ModelState.IsValid)
             {
-                dal.AjouterUtilisateur(user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
-
-                return View("Success");
+                if (!dal.usagerExiste(user.NomUtilisateur))
+                {
+                    dal.AjouterUtilisateur(user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
+                    return View("Success");
+                }
+                else
+                    ViewBag.Message = "Le nom d'usager est déjà pris!";
             }
-            else
-                return View();
+            
+            return View();
         }
 
         public ActionResult Lister()
