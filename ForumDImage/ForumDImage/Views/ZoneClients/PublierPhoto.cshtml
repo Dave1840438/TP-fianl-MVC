@@ -57,6 +57,11 @@
                     <td>@Html.ValidationMessageFor(model => model.Image)</td>
                 </tr>
                 <tr>
+                    <td>@Html.LabelFor(model => model.Titre)</td>
+                    <td>@Html.TextBoxFor(model => model.Titre)</td>
+                    <td>@Html.ValidationMessageFor(model => model.Titre)</td>
+                </tr>
+                <tr>
                     <td>@Html.LabelFor(model => model.Commentaire)</td>
                     <td>@Html.TextBoxFor(model => model.Commentaire)</td>
                     <td>@Html.ValidationMessageFor(model => model.Commentaire)</td>

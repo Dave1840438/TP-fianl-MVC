@@ -40,9 +40,9 @@ namespace ForumDImage.Models
             }
         }
 
-        public void AjouterPhoto(Utilisateur user, byte[] image, String commentaire)
+        public void AjouterPhoto(Utilisateur user, String titre, byte[] image, String commentaire)
         {
-            bdd.Photos.Add(new Photo { Utilisateur = user, Image = image, Commentaire = commentaire, Date = DateTime.Now });
+            bdd.Photos.Add(new Photo { Utilisateur = user, Image = image, Commentaire = commentaire, Date = DateTime.Now, Titre = titre });
             bdd.SaveChanges();
         }
 
@@ -93,7 +93,7 @@ namespace ForumDImage.Models
 
         public void Dispose()
         {
-            
+
             bdd.Dispose();
         }
     }

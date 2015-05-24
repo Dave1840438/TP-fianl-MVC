@@ -12,6 +12,9 @@ namespace ForumDImage.Models
     {
         public int Id { get; set; }
         public virtual Utilisateur Utilisateur { get; set; }
+        
+        [Required]
+        public string Titre { get; set; }
 
         [Required]
         public byte[] Image { get; set; }

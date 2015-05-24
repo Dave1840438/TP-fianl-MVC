@@ -30,7 +30,7 @@ namespace ForumDImage.Controllers
 
             page--;
 
-            if (page * NB_PHOTOS_PAR_PAGE > listeDesPhotos.Count)
+            if (page * NB_PHOTOS_PAR_PAGE >= listeDesPhotos.Count)
                 page = (int)Math.Ceiling((double)listeDesPhotos.Count / (double)NB_PHOTOS_PAR_PAGE) - 1;
 
             int nbPhotosRestantes = listeDesPhotos.Count - (page * NB_PHOTOS_PAR_PAGE);
@@ -46,13 +46,13 @@ namespace ForumDImage.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string photoID)
+        public ActionResult Index(string photoID, int _page = 1)
         {
             if (HttpContext.User.Identity.IsAuthenticated)
                 dal.ajouterUnVote(HttpContext.User.Identity.Name, photoID);
-            ViewBag.Photos = dal.ListerPhotos();
-            return View();
+            return RedirectToAction("Index", new { _page = _page });
         }
+
 
         [HttpGet]
         public ActionResult PublierPhoto()
@@ -61,7 +61,7 @@ namespace ForumDImage.Controllers
         }
 
         [HttpPost]
-        public ActionResult PublierPhoto(String commentaire)
+        public ActionResult PublierPhoto(String Titre, String commentaire)
         {
             ViewBag.Message = "";
             if (Request.Files.Count == 1 && HttpContext.User.Identity.IsAuthenticated)
@@ -76,7 +76,7 @@ namespace ForumDImage.Controllers
                     {
                         Image = binaryReader.ReadBytes(Request.Files[0].ContentLength);
                         Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
-                        dal.AjouterPhoto(currentUser, Image, commentaire);
+                        dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
                     }
                     return View();
                 }
@@ -94,12 +94,12 @@ namespace ForumDImage.Controllers
             return PartialView("getNbVotes");
         }
 
+     
         [HttpPost]
-        public ActionResult SupprimerPhoto(String photoId)
+        public ActionResult SupprimerPhoto(String photoId, int _page = 1)
         {
             dal.SupprimerUnePhoto(photoId);
-            ViewBag.Photos = dal.ListerPhotos();
-            return View("Index");
+            return RedirectToAction("Index", new { _page = _page });
         }
 
         [HttpGet]
@@ -131,7 +131,10 @@ namespace ForumDImage.Controllers
             base.Dispose(disposing);
         }
 
-
+        public ActionResult Test()
+        {
+            return View();
+        }
 
     }
 }

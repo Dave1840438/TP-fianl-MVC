@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201505211508008_tableVotesnomee.Designer.cs">
       <DependentUpon>201505211508008_tableVotesnomee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505241845427_TitrePhotoAjoute.cs" />
+    <Compile Include="Migrations\201505241845427_TitrePhotoAjoute.Designer.cs">
+      <DependentUpon>201505241845427_TitrePhotoAjoute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
@@ -171,6 +175,8 @@
     <Content Include="Views\ZoneClients\PublierPhoto.cshtml" />
     <Content Include="Views\ZoneClients\getNbVotes.cshtml" />
     <Content Include="Views\ZoneClients\ModifierUtilisateur.cshtml" />
+    <Content Include="Views\ZoneClients\Test.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505211508008_tableVotesnomee.resx">
       <DependentUpon>201505211508008_tableVotesnomee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241845427_TitrePhotoAjoute.resx">
+      <DependentUpon>201505241845427_TitrePhotoAjoute.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
