@@ -23,6 +23,11 @@
             }
         }
     </script>
+    <style>
+    .test {
+        color:red
+    }
+    </style>
 </head>
 <body>
     <div class="HeaderDiv">
@@ -57,7 +62,7 @@
                     <td>@Html.ValidationMessageFor(model => model.Image)</td>
                 </tr>
                 <tr>
-                    <td>@Html.LabelFor(model => model.Titre)</td>
+                    <td>@Html.LabelFor(model => model.Titre, new { id="test", @class = "test" })</td>
                     <td>@Html.TextBoxFor(model => model.Titre)</td>
                     <td>@Html.ValidationMessageFor(model => model.Titre)</td>
                 </tr>
@@ -69,10 +74,13 @@
                 <tr>
                     <td><input type="submit" value="Publier" /></td>
                 </tr>
+                <tr>
+                    <td>@ViewBag.Message</td>
+                </tr>
             </table>
         </fieldset>
         }
+
     </div>
-    @ViewBag.Message
 </body>
 </html>

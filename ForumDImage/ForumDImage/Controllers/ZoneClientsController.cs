@@ -66,19 +66,28 @@ namespace ForumDImage.Controllers
             ViewBag.Message = "";
             if (Request.Files.Count == 1 && HttpContext.User.Identity.IsAuthenticated)
             {
-                FileInfo file = new FileInfo(Request.Files[0].FileName);
-                FileType type = file.GetFileType();
-
-                if (type == Detective.GIF || type == Detective.JPEG || type == Detective.PNG)
+                String fileName = Request.Files[0].FileName;
+                //FileInfo file = new FileInfo(Request.Files[0].FileName);
+                //FileType type = file.GetFileType();
+                //Temporary fix
+                //if (type == Detective.GIF || type == Detective.JPEG || type == Detective.PNG)
+                if (fileName.EndsWith(".jpg") || fileName.EndsWith(".pgn") || fileName.EndsWith(".gif"))
                 {
-                    byte[] Image = null;
-                    using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                    try 
                     {
-                        Image = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                        Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
-                        dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
+                        byte[] Image = null;
+                        using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                        {
+                            Image = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                            Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
+                            dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
+                        }
+                        return View();
                     }
-                    return View();
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "Le fichier est endommagé ou corrompu";
+                    }
                 }
                 else
                 {
