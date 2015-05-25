@@ -8,9 +8,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" type="text/css" href="MasterCSS.css" />
     <style>
         body {
             padding-top: 50px;
+        }
+        .headerImage {
+            margin-top: auto;
+            width: 100%;
+            height: 10%;
+            background-size: contain;
+            background-image: url(le-yung-lel.png);
+            background-repeat: no-repeat;
+            background-position: center;
         }
     </style>
 </head>
@@ -48,13 +58,14 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron" style="margin-top:auto; width:100%; height:10%; background:url(le-yung-lel.png) no-repeat center; background-size:contain">
+    
+    <div class="jumbotron headerImage">
     </div>
-    <div class="container body-content" style="background-color:red">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Le yung LeL team</p>
         </footer>
     </div>
 </body>

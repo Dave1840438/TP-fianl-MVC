@@ -25,28 +25,27 @@
 {
     <fieldset>
         <legend>Publier une Image</legend>
-        <table>
-            <tr>
-                <td>@Html.LabelFor(model => model.Image)</td>
-                <td><input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" /></td>
-                <td>@Html.ValidationMessageFor(model => model.Image)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.Titre)</td>
-                <td>@Html.TextBoxFor(model => model.Titre)</td>
-                <td>@Html.ValidationMessageFor(model => model.Titre)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.Commentaire)</td>
-                <td>@Html.TextBoxFor(model => model.Commentaire)</td>
-                <td>@Html.ValidationMessageFor(model => model.Commentaire)</td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Publier" /></td>
-            </tr>
-            <tr>
-                <td>@ViewBag.Message</td>
-            </tr>
-        </table>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image)
+            <input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" />
+            @Html.ValidationMessageFor(model => model.Image)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Titre) <span class="mandatory">*</span>
+            @Html.TextBoxFor(model => model.Titre, new { @class = "form-control", placeholder = "Titre" })
+            @Html.ValidationMessageFor(model => model.Titre)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Commentaire)
+            @Html.TextBoxFor(model => model.Commentaire, new { @class = "form-control", placeholder = "Commentaire" })
+            @Html.ValidationMessageFor(model => model.Commentaire)
+        </div>
+        <span class="mandatory">* Obligatoire</span>
+        <input type="submit" value="Publier" />
+        <br />
+        <span style="color:red">@ViewBag.Message</span>
     </fieldset>
 }

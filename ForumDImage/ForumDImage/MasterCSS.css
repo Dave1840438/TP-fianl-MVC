@@ -7,79 +7,78 @@ and open the template in the editor.
 Created on : May 12, 2015, 8:05:37 PM
 Author     : T3 Chakraa
 */
-body
-{
-    background-color: black
+.mandatory {
+    color: red;
 }
-.HeaderDiv
-{
-background-color: white;
-width: 950px;
-min-width: 950px;
-margin-left: auto;
-margin-right: auto;
-padding:10px;
+
+.HeaderDiv {
+    background-color: white;
+    width: 950px;
+    min-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
-.MainDiv
-{
-margin-top: 40px;
-background-color: white;
-width: 950px;
-min-width: 950px;
-margin-left: auto;
-margin-right: auto;
-padding:10px;
+
+.MainDiv {
+    margin-top: 40px;
+    background-color: white;
+    width: 950px;
+    min-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
-.HeaderButton
-{
-font-family: Georgia, serif;
+
+.HeaderButton {
+    font-family: Georgia, serif;
 }
-.MainLogo
-{
-display: block;
-margin-left: auto;
-margin-right: auto;
-margin-top: 20px;
+
+.MainLogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
-p
-{
-text-align: center;
+
+p {
+    text-align: center;
 }
-table.Filtres td
-{
+
+table.Filtres td {
     padding-right: 10px;
 }
-table.MainTable
-{
+
+table.MainTable {
     border-collapse: collapse;
     text-align: center;
     width: 100%;
-    table-layout:fixed
+    table-layout: fixed;
 }
-table.TableauSpectacle
-{
+
+table.TableauSpectacle {
     border-collapse: collapse;
     text-align: center;
-    width: 100%
+    width: 100%;
 }
-table.TableauSpectacle td
-{
-    border: 1px solid black;
-}
-table.TableauSpectacle tr:nth-child(odd)
-{
-    background-color: #ead12c
-}
-table.TableauSpectacle th
-{
-    background-color: white
-}
-.BilletTBX
-{
+
+    table.TableauSpectacle td {
+        border: 1px solid black;
+    }
+
+    table.TableauSpectacle tr:nth-child(odd) {
+        background-color: #ead12c;
+    }
+
+    table.TableauSpectacle th {
+        background-color: white;
+    }
+
+.BilletTBX {
     width: 60px;
 }
-.ImageSpectacle
-{
+
+.ImageSpectacle {
     height: 200px;
     display: block;
     margin-left: auto;

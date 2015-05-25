@@ -7,19 +7,17 @@
 {
     <fieldset>
         <legend>Se connecter</legend>
-        <table>
-            <tr>
-                <td>@Html.LabelFor(model => model.NomUtilisateur)</td>
-                <td>@Html.TextBoxFor(model => model.NomUtilisateur)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.MotDePasse)</td>
-                <td>@Html.TextBoxFor(model => model.MotDePasse)</td>
-            </tr>
-        </table>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomUtilisateur)
+            @Html.TextBoxFor(model => model.NomUtilisateur, new { @class = "form-control", placeholder = "Nom d'utilisateur" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MotDePasse)
+            @Html.TextBoxFor(model => model.MotDePasse, new { @class = "form-control", type = "password", placeholder = "Mot de passe"})
+        </div>
         <br />
-        <input type="submit" value="Connection" />
+        <input type="submit" value="Connection" class="btn btn-default" />
     </fieldset>
     <label style="color:red">@ViewBag.Message</label>
 }
