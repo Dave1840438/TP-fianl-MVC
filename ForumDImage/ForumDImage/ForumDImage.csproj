@@ -169,14 +169,12 @@
     <Content Include="Views\Inscription\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Inscription\Success.cshtml" />
-    <Content Include="Views\Inscription\Lister.cshtml" />
     <Content Include="Views\Inscription\ErreurInscription.cshtml" />
     <Content Include="Views\ZoneClients\Index.cshtml" />
     <Content Include="Views\ZoneClients\PublierPhoto.cshtml" />
     <Content Include="Views\ZoneClients\getNbVotes.cshtml" />
     <Content Include="Views\ZoneClients\ModifierUtilisateur.cshtml" />
-    <Content Include="Views\ZoneClients\Test.cshtml" />
-    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\ZoneClients\ModificationEffectuee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

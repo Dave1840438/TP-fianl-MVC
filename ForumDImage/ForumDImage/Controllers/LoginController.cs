@@ -44,6 +44,15 @@ namespace ForumDImage.Controllers
             return View();
         }
 
+        public ActionResult Deconnection()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+            }
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

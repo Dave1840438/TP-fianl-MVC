@@ -1,53 +1,25 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
     @model ForumDImage.Models.Utilisateur
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="MasterCSS.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <div class="HeaderDiv">
-        <img src="Le-Yung-LeL.png" alt="Le Yung Lel Logo" class="MainLogo" /></a>
-        <br>
-        <br>
-        <table class="MainTable">
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Se connecter</legend>
+        <table>
             <tr>
-                <td>@Html.ActionLink("Index", "Index", "ZoneClients")</td>
-                <td>@Html.ActionLink("Publier une Photo", "PublierPhoto", "ZoneClients")</td>
-                <td>@Html.ActionLink("Modifier le Compte", "ModifierUtilisateur", "ZoneClients")</td>
-                <td>@Html.ActionLink("Login", "Index", "Login")</td>
-                <td>@Html.ActionLink("Inscription", "Index", "Inscription")</td>
+                <td>@Html.LabelFor(model => model.NomUtilisateur)</td>
+                <td>@Html.TextBoxFor(model => model.NomUtilisateur)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.MotDePasse)</td>
+                <td>@Html.TextBoxFor(model => model.MotDePasse)</td>
             </tr>
         </table>
-        <hr>
-    </div>
-    <div class="MainDiv">
-        @using (Html.BeginForm())
-        {
-        <fieldset>
-            <legend>Se connecter</legend>
-            <table>
-                <tr>
-                    <td>@Html.LabelFor(model => model.NomUtilisateur)</td>
-                    <td>@Html.TextBoxFor(model => model.NomUtilisateur)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(model => model.MotDePasse)</td>
-                    <td>@Html.TextBoxFor(model => model.MotDePasse)</td>
-                </tr>
-            </table>
-            
-            <br />
-            <input type="submit" value="Connection" />
-        </fieldset>
-        <label style="color:red">@ViewBag.Message</label>
-        }
-    </div>
-</body>
-</html>
+
+        <br />
+        <input type="submit" value="Connection" />
+    </fieldset>
+    <label style="color:red">@ViewBag.Message</label>
+}

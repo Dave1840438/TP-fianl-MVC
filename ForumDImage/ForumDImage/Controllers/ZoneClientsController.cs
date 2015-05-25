@@ -23,7 +23,7 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index(int? _page)
         {
-            const int NB_PHOTOS_PAR_PAGE = 1;
+            const int NB_PHOTOS_PAR_PAGE = 3;
             int page = _page != null && (int)_page > 0  ? (int)_page : 1;
 
             List<Photo> listeDesPhotos = dal.ListerPhotos();
@@ -124,7 +124,7 @@ namespace ForumDImage.Controllers
             if (ModelState.IsValid)
             {
                 dal.ModifierUtilisateur(user.Id.ToString(), user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
-                return View("Success");
+                return View("ModificationEffectuee");
             }
             else
                 return View();
