@@ -21,6 +21,9 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "ZoneClients");
+
             return View();
         }
 
@@ -42,13 +45,10 @@ namespace ForumDImage.Controllers
             return View();
         }
 
-        public ActionResult Lister()
+        public ActionResult Success()
         {
-            Dal dataBase = new Dal();
-
-            return View(dataBase.ListerUtilisateur());
+            return RedirectToAction("Index", "Login");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

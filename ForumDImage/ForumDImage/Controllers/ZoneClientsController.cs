@@ -23,7 +23,7 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index(int? _page)
         {
-            const int NB_PHOTOS_PAR_PAGE = 3;
+            const int NB_PHOTOS_PAR_PAGE = 6;
             int page = _page != null && (int)_page > 0  ? (int)_page : 1;
 
             List<Photo> listeDesPhotos = dal.ListerPhotos();
@@ -67,10 +67,7 @@ namespace ForumDImage.Controllers
             if (Request.Files.Count == 1 && HttpContext.User.Identity.IsAuthenticated)
             {
                 String fileName = Request.Files[0].FileName;
-                //FileInfo file = new FileInfo(Request.Files[0].FileName);
-                //FileType type = file.GetFileType();
-                //Temporary fix
-                //if (type == Detective.GIF || type == Detective.JPEG || type == Detective.PNG)
+
                 if (fileName.EndsWith(".jpg") || fileName.EndsWith(".pgn") || fileName.EndsWith(".gif"))
                 {
                     try 
@@ -91,10 +88,10 @@ namespace ForumDImage.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = "Mauvais type de fichier";
+                    ViewBag.Message = "Mauvais type de fichier!";
                 }
             }
-            return View();
+            return RedirectToAction("Index", "ZoneClients");
         }
 
         public ActionResult getNbVotes(String photoId)
@@ -128,6 +125,11 @@ namespace ForumDImage.Controllers
             }
             else
                 return View();
+        }
+
+        public ActionResult ModificationEffectuee()
+        {
+            return RedirectToAction("Index", "ZoneClients");
         }
 
         protected override void Dispose(bool disposing)

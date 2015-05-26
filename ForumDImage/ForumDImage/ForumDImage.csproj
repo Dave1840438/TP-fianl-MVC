@@ -106,6 +106,8 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\preview.PNG" />
+    <Content Include="Images\Le-Yung-LeL.png" />
     <Content Include="MasterCSS.css" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -116,6 +118,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Views\Shared\Le-Yung-LeL.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +152,14 @@
     <Compile Include="Migrations\201505241845427_TitrePhotoAjoute.cs" />
     <Compile Include="Migrations\201505241845427_TitrePhotoAjoute.Designer.cs">
       <DependentUpon>201505241845427_TitrePhotoAjoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505260200046_PhotosDisplayNames.cs" />
+    <Compile Include="Migrations\201505260200046_PhotosDisplayNames.Designer.cs">
+      <DependentUpon>201505260200046_PhotosDisplayNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505260223575_imageDisplayName.cs" />
+    <Compile Include="Migrations\201505260223575_imageDisplayName.Designer.cs">
+      <DependentUpon>201505260223575_imageDisplayName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BddContext.cs" />
@@ -203,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505241845427_TitrePhotoAjoute.resx">
       <DependentUpon>201505241845427_TitrePhotoAjoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505260200046_PhotosDisplayNames.resx">
+      <DependentUpon>201505260200046_PhotosDisplayNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505260223575_imageDisplayName.resx">
+      <DependentUpon>201505260223575_imageDisplayName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,6 +23,9 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "ZoneClients");
+
             ViewBag.Message = "";
             return View();
         }
@@ -44,7 +47,7 @@ namespace ForumDImage.Controllers
             return View();
         }
 
-        public ActionResult Deconnection()
+        public ActionResult Deconnexion()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {

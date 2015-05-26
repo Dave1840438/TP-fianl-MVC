@@ -16,36 +16,39 @@
         }
     }
 </script>
-<label>Preview</label>
-<br />
-<img id="preview" src="" alt="Image d'aperçu'" />
-<br />
+
 
 @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <fieldset>
         <legend>Publier une Image</legend>
-
+        <h4>Apperçu de l'image :</h4>
+        <br />
+        <img id="preview" src="/Images/preview.png" alt="Image d'aperçu'" class="img-responsive img-rounded" style="max-width:30%; max-height:30%" />
+        <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.Image)
-            <input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" />
+            @Html.LabelFor(model => model.Image, new { @class = "control-label" })
+            <input id="fichier" type="file" accept=".jpg,.png,.gif" name="Image" onchange="ChargerPreview()" class="btn btn-primary" />
             @Html.ValidationMessageFor(model => model.Image)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Titre) <span class="mandatory">*</span>
+            @Html.LabelFor(model => model.Titre, new { @class = "control-label" }) <span class="mandatory">*</span>
             @Html.TextBoxFor(model => model.Titre, new { @class = "form-control", placeholder = "Titre" })
             @Html.ValidationMessageFor(model => model.Titre)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Commentaire)
+            @Html.LabelFor(model => model.Commentaire, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Commentaire, new { @class = "form-control", placeholder = "Commentaire" })
             @Html.ValidationMessageFor(model => model.Commentaire)
         </div>
-        <span class="mandatory">* Obligatoire</span>
-        <input type="submit" value="Publier" />
+        <span class="mandatory"><b>* Obligatoire</b></span>
         <br />
-        <span style="color:red">@ViewBag.Message</span>
+        <span style="color:red"><b>@ViewBag.Message</b></span>
+        <br />
+        <br />
+        <input type="submit" value="Publier" class="btn btn-primary" />
+        <br />
     </fieldset>
 }

@@ -58,7 +58,9 @@ namespace ForumDImage.Models
 
         public List<Photo> ListerPhotos()
         {
-            return bdd.Photos.ToList();
+            List<Photo> listeDesPhotos = bdd.Photos.ToList();
+            listeDesPhotos.Reverse();
+            return listeDesPhotos;
         }
 
         public Utilisateur Authentifier(string username, string password)

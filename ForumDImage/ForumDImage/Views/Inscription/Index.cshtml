@@ -10,37 +10,37 @@
     <fieldset>
         <legend>Ajouter un Usager</legend>
         <div class="form-group">
-            @Html.LabelFor(model => model.NomUtilisateur)<span class="mandatory">*</span>
+            @Html.LabelFor(model => model.NomUtilisateur, new { @class = "control-label" })<span class="mandatory">*</span>
             @Html.TextBoxFor(model => model.NomUtilisateur, new { @class = "form-control", placeholder = "Nom d'utilisateur" })
             @Html.ValidationMessageFor(model => model.NomUtilisateur)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NomComplet)
+            @Html.LabelFor(model => model.NomComplet, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.NomComplet, new { @class = "form-control", placeholder = "Nom complet" })
             @Html.ValidationMessageFor(model => model.NomComplet)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MotDePasse)
+            @Html.LabelFor(model => model.MotDePasse, new { @class = "control-label" })<span class="mandatory">*</span>
             @Html.TextBoxFor(model => model.MotDePasse, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
             @Html.ValidationMessageFor(model => model.MotDePasse)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmMotDePasse)<span class="mandatory">*</span>
+            @Html.LabelFor(model => model.ConfirmMotDePasse, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.ConfirmMotDePasse, new { @class = "form-control", placeholder = "Confirmation du mot de passe", type = "password" })
             @Html.ValidationMessageFor(model => model.ConfirmMotDePasse)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email)
+            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email" })
             @Html.ValidationMessageFor(model => model.Email)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmEmail)
+            @Html.LabelFor(model => model.ConfirmEmail, new { @class = "control-label" })
             @Html.TextBoxFor(model => model.ConfirmEmail, new { @class = "form-control", placeholder = "Confirmation du email" })
             @Html.ValidationMessageFor(model => model.ConfirmEmail)
         </div>

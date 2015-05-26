@@ -13,16 +13,16 @@ namespace ForumDImage.Models
         public int Id { get; set; }
         public virtual Utilisateur Utilisateur { get; set; }
         
-        [Required]
+        [Required, Display(Name="Titre :")]
         public string Titre { get; set; }
 
-        [Required]
+        [Required, Display(Name="Image :")]
         public byte[] Image { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
 
-        [StringLength(300)]
+        [StringLength(300), Display(Name="Commentaire :")]
         public string Commentaire { get; set; }
     }
 }

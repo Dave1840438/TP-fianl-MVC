@@ -9,18 +9,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link rel="stylesheet" type="text/css" href="MasterCSS.css" />
+    @{ForumDImage.Models.Dal dal = new ForumDImage.Models.Dal();}
     <style>
         body {
             padding-top: 50px;
         }
+
         .headerImage {
             margin-top: auto;
             width: 100%;
             height: 10%;
             background-size: contain;
-            background-image: url(le-yung-lel.png);
+            background-image: url(/Images/Le-Yung-Lel.png);
             background-repeat: no-repeat;
             background-position: center;
+            position: fixed;
+            background-color: rgb(255, 255, 255);
+            z-index:100;
+        }
+
+        .mandatory {
+            color: red;
+        }
+
+        .field-validation-error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .notActive {
+            pointer-events: none;
+            cursor: default;
         }
     </style>
 </head>
@@ -48,24 +67,35 @@
                     {
                         <li>@Html.ActionLink("Publier une photo", "PublierPhoto", "ZoneClients")</li>
                         <li>@Html.ActionLink("Modifier mon compte", "ModifierUtilisateur", "ZoneClients")</li>
-                        <li>@Html.ActionLink("Déconnection", "Deconnection", "Login")</li>
+                        <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Login")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Inscription", "Index", "Inscription")</li>
                     }
                 </ul>
+
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        @{
+                            ForumDImage.Models.Utilisateur user = dal.recupererUtilisateur(HttpContext.Current.User.Identity.Name);
+                            String nom = user.NomComplet ?? user.NomUtilisateur;
+                        }
+                        <li>@Html.ActionLink("Vous êtes connecté en tant que: " + nom, "Deconnexion", "Login", new { @class = "notActive" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
-    
+
     <div class="jumbotron headerImage">
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top:110px">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Le yung LeL team</p>
+            <p>&copy; @DateTime.Now.Year - Le Yung LeL team</p>
         </footer>
     </div>
 </body>
