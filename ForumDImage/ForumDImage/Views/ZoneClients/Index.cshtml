@@ -18,18 +18,20 @@
         });
     }
 </script>
+
+<style>
+    .AlignBottom {
+        position:relative;
+        bottom:0;
+        left:0;
+    }
+</style>
+
 <h1>Page @ViewBag.page</h1>
-@{ForumDImage.Models.Dal dal = new ForumDImage.Models.Dal(); int counter = 0; const int NB_PHOTOS_PAR_RANGE = 3; }
+@{ForumDImage.Models.Dal dal = new ForumDImage.Models.Dal(); }
 
     @foreach (ForumDImage.Models.Photo photo in ViewBag.Photos)
     {
-        if (counter % NB_PHOTOS_PAR_RANGE == 0)
-        {
-          @:<div class="row">
-        }
-        
-        counter++;
-
         if (photo.Utilisateur.Id.ToString() == HttpContext.Current.User.Identity.Name)
         {
             using (Html.BeginForm("SupprimerPhoto", "ZoneClients", FormMethod.Post, new { onsubmit = "return confirm('Voulez-vous vraiment supprimer cette photo?')" }))
@@ -42,50 +44,43 @@
 
         var base64 = Convert.ToBase64String(photo.Image);
         var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-        <div class="col-md-4">
-        <br />
-        <label>Titre: @photo.Titre</label>
-        <br />
-        <img src="@imgSrc" class="img-responsive img-rounded" style="max-width:30%; max-height:30%" />
-        <br />
-        <label>Auteur: @(photo.Utilisateur.NomComplet == null ? photo.Utilisateur.NomUtilisateur : photo.Utilisateur.NomComplet)</label>
-        <br />
-        <label>Adresse email de l'auteur: @(photo.Utilisateur.Email == null ? "Inconnue" : photo.Utilisateur.Email)</label>
-        <br />
-        <label>Date de publication: @photo.Date</label>
-        <br />
-        <label>Commentaire: @(photo.Commentaire == "" ? "Aucun" : photo.Commentaire)</label>
-        <br />
-        <label>
-            La photo a été aimée <label id="@photo.Id">
-                <script type="text/javascript">
-                    ChargeNombreVotes(@photo.Id);
-                    $(function () { window.setInterval("ChargeNombreVotes(@photo.Id)", 10000) });
-                </script>
-            </label> fois
-        </label>
-        <br />
-        @if (!dal.UtilisateurADejaVote(photo.Id.ToString(), HttpContext.Current.User.Identity.Name))
-        {
-            using (Html.BeginForm("Index", "ZoneClients", FormMethod.Post))
-            {
-                @Html.Hidden("photoID", photo.Id);
-        @Html.Hidden("_page", (int)ViewBag.page);
-        <input type="submit" value="J'aime" class="btn btn-primary" />
-            }
+                <br />
+                <label style="font-weight:bold; color:purple; font-size:x-large; text-align:center; display: block">@photo.Titre</label>
+                <br />
+                <img src="@imgSrc" class="img-responsive img-rounded center-block" />
+                <br />
+                    <label>Auteur: @(photo.Utilisateur.NomComplet == null ? photo.Utilisateur.NomUtilisateur : photo.Utilisateur.NomComplet)</label>
+                    <br />
+                    <label>Adresse email de l'auteur: @(photo.Utilisateur.Email == null ? "Inconnue" : photo.Utilisateur.Email)</label>
+                    <br />
+                    <label>Date de publication: @photo.Date</label>
+                    <br />
+                    <label>Commentaire: @(photo.Commentaire == "" ? "Aucun" : photo.Commentaire)</label>
+                    <br />
+                    <label>
+                        La photo a été aimée <label id="@photo.Id">
+                            <script type="text/javascript">
+                                ChargeNombreVotes(@photo.Id);
+                                $(function () { window.setInterval("ChargeNombreVotes(@photo.Id)", 10000) });
+                            </script>
+                        </label> fois
+                    </label>
+                    <br />
+                    if (!dal.UtilisateurADejaVote(photo.Id.ToString(), HttpContext.Current.User.Identity.Name))
+                    {
+                        using (Html.BeginForm("Index", "ZoneClients", FormMethod.Post))
+                        {
+                            @Html.Hidden("photoID", photo.Id);
+                        @Html.Hidden("_page", (int)ViewBag.page);
+                        <input type="submit" value="J'aime" class="btn btn-primary" />
+                        }
 
-        }
-        else
-        {
-            <label><b>Vous avez déjà voté</b></label>
-        }
-        <hr />
-        
-        @if (counter % NB_PHOTOS_PAR_RANGE == 0)
-        {
-            @:</div>
-        }
-        </div>
+                    }
+                    else
+                    {
+                        <label><b>Vous avez déjà voté</b></label>
+                    }
+                    <hr/>
     }
 
 

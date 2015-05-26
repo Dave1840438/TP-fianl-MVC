@@ -13,7 +13,7 @@ namespace ForumDImage.Models
         public int Id { get; set; }
         public virtual Utilisateur Utilisateur { get; set; }
         
-        [Required, Display(Name="Titre :")]
+        [Required, Display(Name="Titre :"), StringLength(50, ErrorMessage="Le titre ne doit pas dépassé 50 caractères")]
         public string Titre { get; set; }
 
         [Required, Display(Name="Image :")]
@@ -22,7 +22,7 @@ namespace ForumDImage.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [StringLength(300), Display(Name="Commentaire :")]
+        [StringLength(300, ErrorMessage="Le commentaire ne doit pas dépassé 300 caractères"), Display(Name="Commentaire :")]
         public string Commentaire { get; set; }
     }
 }
