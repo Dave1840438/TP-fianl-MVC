@@ -23,8 +23,8 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index(int? _page)
         {
-            const int NB_PHOTOS_PAR_PAGE = 1;
-            int page = _page != null && (int)_page > 0  ? (int)_page : 1;
+            const int NB_PHOTOS_PAR_PAGE = 5;
+            int page = _page != null && (int)_page > 0 ? (int)_page : 1;
 
             List<Photo> listeDesPhotos = dal.ListerPhotos();
 
@@ -53,7 +53,7 @@ namespace ForumDImage.Controllers
             return RedirectToAction("Index", new { _page = _page });
         }
 
-        
+
         public void FaireUnVote(string photoID)
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -70,34 +70,50 @@ namespace ForumDImage.Controllers
         [HttpPost]
         public ActionResult PublierPhoto(String Titre, String commentaire)
         {
+            const int TITLE_LENGHT = 50;
+            const int COMMENT_LENGHT = 300;
             ViewBag.Message = "";
-            if (Request.Files.Count == 1 && HttpContext.User.Identity.IsAuthenticated)
-            {
-                String fileName = Request.Files[0].FileName;
 
-                if (fileName.EndsWith(".jpg") || fileName.EndsWith(".pgn") || fileName.EndsWith(".gif"))
+            if (ModelState.IsValid)
+            {
+                if (Request.Files.Count == 1 && HttpContext.User.Identity.IsAuthenticated)
                 {
-                    try 
+                    String fileName = Request.Files[0].FileName;
+
+                    if (fileName.EndsWith(".jpg") || fileName.EndsWith(".png") || fileName.EndsWith(".gif"))
                     {
-                        byte[] Image = null;
-                        using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                        try
                         {
-                            Image = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                            Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
-                            dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
+                            byte[] Image = null;
+                            using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                            {
+                                Image = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                                Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
+                                if (Titre.Length > TITLE_LENGHT)
+                                    ViewBag.Message = "Le titre ne doit pas dépasser " + TITLE_LENGHT + " caractères!";
+                                if (Titre.Length == 0)
+                                    ViewBag.Message = "Le titre ne doit pas être vide!";
+                                else if (commentaire.Length > COMMENT_LENGHT)
+                                    ViewBag.Message = "Le commentaire ne doit pas dépasser " + COMMENT_LENGHT + " caractères!";
+                                else
+                                {
+                                    dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
+                                    return RedirectToAction("Index");
+                                }
+                            }
                         }
-                        return RedirectToAction("Index");
+                        catch (Exception ex)
+                        {
+                            ViewBag.Message = "Le fichier est endommagé ou corrompu!";
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        ViewBag.Message = "Le fichier est endommagé ou corrompu";
+                        ViewBag.Message = "Mauvais type de fichier!";
                     }
-                }
-                else
-                {
-                    ViewBag.Message = "Mauvais type de fichier!";
                 }
             }
+
             return View();
         }
 
@@ -107,7 +123,7 @@ namespace ForumDImage.Controllers
             return PartialView("getNbVotes");
         }
 
-     
+
         [HttpPost]
         public ActionResult SupprimerPhoto(String photoId, int _page = 1)
         {
@@ -135,14 +151,26 @@ namespace ForumDImage.Controllers
         [HttpPost]
         public ActionResult ModifierUtilisateur(ViewModels.UserValidationModel user)
         {
-
             if (ModelState.IsValid)
             {
                 dal.ModifierUtilisateur(user.Id.ToString(), user.NomUtilisateur, user.MotDePasse, user.NomComplet, user.Email);
                 return View("ModificationEffectuee");
             }
             else
-                return View();
+            {
+                Utilisateur userR = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
+                ForumDImage.ViewModels.UserValidationModel userView = new ViewModels.UserValidationModel
+                {
+                    Id = userR.Id,
+                    NomUtilisateur = userR.NomUtilisateur,
+                    NomComplet = userR.NomComplet,
+                    MotDePasse = userR.MotDePasse,
+                    ConfirmMotDePasse = userR.MotDePasse,
+                    Email = userR.Email,
+                    ConfirmEmail = userR.Email
+                };
+                return View(userView);
+            }
         }
 
         public ActionResult ModificationEffectuee()

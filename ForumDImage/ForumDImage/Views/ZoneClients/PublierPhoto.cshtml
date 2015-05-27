@@ -21,6 +21,7 @@
 
 @using (Html.BeginForm("PublierPhoto", "ZoneClients", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    Html.ValidationSummary(false);
     <fieldset>
         <legend>Publier une Image</legend>
         <h4>Apperçu de l'image :</h4>
