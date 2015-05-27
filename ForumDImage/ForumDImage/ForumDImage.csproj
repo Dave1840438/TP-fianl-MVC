@@ -161,10 +161,6 @@
     <Compile Include="Migrations\201505260223575_imageDisplayName.Designer.cs">
       <DependentUpon>201505260223575_imageDisplayName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505261928386_strLenPhotos.cs" />
-    <Compile Include="Migrations\201505261928386_strLenPhotos.Designer.cs">
-      <DependentUpon>201505261928386_strLenPhotos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BddContext.cs" />
     <Compile Include="Models\Dal.cs" />
@@ -184,7 +180,6 @@
     <Content Include="Views\Inscription\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Inscription\Success.cshtml" />
-    <Content Include="Views\Inscription\ErreurInscription.cshtml" />
     <Content Include="Views\ZoneClients\Index.cshtml" />
     <Content Include="Views\ZoneClients\PublierPhoto.cshtml" />
     <Content Include="Views\ZoneClients\getNbVotes.cshtml" />
@@ -224,9 +219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505260223575_imageDisplayName.resx">
       <DependentUpon>201505260223575_imageDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505261928386_strLenPhotos.resx">
-      <DependentUpon>201505261928386_strLenPhotos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

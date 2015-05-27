@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Modification d'Utilisateur";
 }
 
 @using (Html.BeginForm("ModifierUtilisateur", "ZoneClients", FormMethod.Post))
@@ -9,11 +10,12 @@
     <fieldset>
         <legend>Modification du Compte Utilisateur</legend>
         @Html.ValidationSummary(true)
-        @Html.Hidden("Id", HttpContext.Current.User.Identity.Name)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NomUtilisateur, new { @class = "control-label" })<span class="mandatory">*</span>
-            @Html.TextBoxFor(model => model.NomUtilisateur, new { @class = "form-control", placeholder = "Nom d'utilisateur" })
+            @Html.LabelFor(model => model.NomUtilisateur, new { @class = "control-label" })
+            @Html.HiddenFor(model => model.NomUtilisateur)
+            <label class="control-label">@Model.NomUtilisateur</label>
             @Html.ValidationMessageFor(model => model.NomUtilisateur)
         </div>
 

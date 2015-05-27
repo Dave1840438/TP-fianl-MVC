@@ -23,14 +23,14 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult Index(int? _page)
         {
-            const int NB_PHOTOS_PAR_PAGE = 6;
+            const int NB_PHOTOS_PAR_PAGE = 1;
             int page = _page != null && (int)_page > 0  ? (int)_page : 1;
 
             List<Photo> listeDesPhotos = dal.ListerPhotos();
 
             page--;
 
-            if (page * NB_PHOTOS_PAR_PAGE >= listeDesPhotos.Count)
+            if (page * NB_PHOTOS_PAR_PAGE >= listeDesPhotos.Count && listeDesPhotos.Count != 0)
                 page = (int)Math.Ceiling((double)listeDesPhotos.Count / (double)NB_PHOTOS_PAR_PAGE) - 1;
 
             int nbPhotosRestantes = listeDesPhotos.Count - (page * NB_PHOTOS_PAR_PAGE);
@@ -51,6 +51,13 @@ namespace ForumDImage.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
                 dal.ajouterUnVote(HttpContext.User.Identity.Name, photoID);
             return RedirectToAction("Index", new { _page = _page });
+        }
+
+        
+        public void FaireUnVote(string photoID)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+                dal.ajouterUnVote(HttpContext.User.Identity.Name, photoID);
         }
 
 
@@ -79,7 +86,7 @@ namespace ForumDImage.Controllers
                             Utilisateur currentUser = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
                             dal.AjouterPhoto(currentUser, Titre, Image, commentaire);
                         }
-                        return View();
+                        return RedirectToAction("Index");
                     }
                     catch (Exception ex)
                     {
@@ -91,7 +98,7 @@ namespace ForumDImage.Controllers
                     ViewBag.Message = "Mauvais type de fichier!";
                 }
             }
-            return RedirectToAction("Index", "ZoneClients");
+            return View();
         }
 
         public ActionResult getNbVotes(String photoId)
@@ -111,7 +118,18 @@ namespace ForumDImage.Controllers
         [HttpGet]
         public ActionResult ModifierUtilisateur()
         {
-            return View();
+            Utilisateur user = dal.recupererUtilisateur(HttpContext.User.Identity.Name);
+            ForumDImage.ViewModels.UserValidationModel userView = new ViewModels.UserValidationModel
+            {
+                Id = user.Id,
+                NomUtilisateur = user.NomUtilisateur,
+                NomComplet = user.NomComplet,
+                MotDePasse = user.MotDePasse,
+                ConfirmMotDePasse = user.MotDePasse,
+                Email = user.Email,
+                ConfirmEmail = user.Email
+            };
+            return View(userView);
         }
 
         [HttpPost]
